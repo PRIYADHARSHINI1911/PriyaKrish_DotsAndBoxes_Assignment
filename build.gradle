@@ -1,10 +1,19 @@
 plugins {
     id 'java'
+    id 'application'
     id 'jacoco'
 }
 
 group = 'com.entsia.dotsandboxes'
 version = '1.0-SNAPSHOT'
+
+application {
+    mainClass = 'com.entsia.dotsandboxes.DotsAndBoxes'
+}
+
+run {
+    standardInput = System.in
+}
 
 repositories {
     mavenCentral()
@@ -18,6 +27,13 @@ dependencies {
 
 test {
     useJUnitPlatform()
+    
+    // Display test results in build output
+    testLogging {
+        events "passed", "skipped", "failed"
+        exceptionFormat "full"
+        showStandardStreams false
+    }
 }
 
 jacocoTestReport {

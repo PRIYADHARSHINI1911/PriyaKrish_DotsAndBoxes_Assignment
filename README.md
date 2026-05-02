@@ -8,24 +8,75 @@ Dots and Boxes is a two-player strategy game played on a 4×4 grid of dots. Play
 
 ## Quick Start
 
-### Build
-```bash
-./gradlew build
+### Easiest: Quick-Start Batch File
+
+**Windows:**
+Double-click `run.bat` to build and start the game immediately.
+
+---
+
+### 🔧 IDE (IntelliJ IDEA / STS / Eclipse)
+1. Open the project in your IDE
+2. Navigate to `src/main/java/com/entsia/dotsandboxes/DotsAndBoxes.java`
+3. Click the **▶ Run** button 
+
+---
+
+### Command Line (Windows) 
+
+#### **Command Prompt (cmd.exe) - Clean Output**
+```cmd
+gradlew clean build && java -cp build/classes/java/main com.entsia.dotsandboxes.DotsAndBoxes
 ```
 
-### Run
-```bash
-./gradlew run
-```
-
-Or run directly:
-```bash
+#### **PowerShell**
+```powershell
+./gradlew clean build
 java -cp build/classes/java/main com.entsia.dotsandboxes.DotsAndBoxes
 ```
 
-### Run Tests
+#### **Quick: Just Run (No Build)**
+```cmd
+java -cp build/classes/java/main com.entsia.dotsandboxes.DotsAndBoxes
+```
+
+---
+
+### Testing & Code Quality
+
+**Build & Test**
+```bash
+./gradlew clean build
+```
+
+**Run Tests Only**
 ```bash
 ./gradlew test
+```
+
+**Generate Coverage Report**
+```bash
+./gradlew jacocoTestReport
+```
+Coverage report: `build/reports/jacoco/test/html/index.html`
+
+**List All Tasks**
+```bash
+./gradlew tasks
+```
+
+---
+
+### How to Play
+Enter moves like `A1`, `B2`, etc., or `Q` to quit.
+
+**Example Game:**
+```
+Player 1: A1
+Player 2: B2
+Player 1: C1
+...
+Player 1: Q
 ```
 
 ## Game Rules
@@ -185,11 +236,11 @@ ABCDEFG
 
 ### SonarQube Compliance
 The codebase meets production quality standards:
-- ✅ **No resource leaks**: Scanner managed with try-with-resources
-- ✅ **No magic numbers**: All constants extracted with meaningful names (Board.SIZE, Game.BOARD_MAX_BOX_ROW, etc.)
-- ✅ **Minimal nested control flow**: Complex conditions flattened using logical operators (S135 compliant)
-- ✅ **No code duplication**: Each concept represented in single class
-- ✅ **Clean code principles**: Proper encapsulation, single responsibility, clear naming
+- **No resource leaks**: Scanner managed with try-with-resources
+- **No magic numbers**: All constants extracted with meaningful names (Board.SIZE, Game.BOARD_MAX_BOX_ROW, etc.)
+- **Minimal nested control flow**: Complex conditions flattened using logical operators (S135 compliant)
+- **No code duplication**: Each concept represented in single class
+- **Clean code principles**: Proper encapsulation, single responsibility, clear naming
 
 ### Jacoco Code Coverage
 - **Instruction Coverage**: 84% - Most code paths executed during testing

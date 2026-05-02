@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Unit tests for Game class.
  */
-public class GameTest {
+class GameTest {
     private Game game;
 
     @BeforeEach

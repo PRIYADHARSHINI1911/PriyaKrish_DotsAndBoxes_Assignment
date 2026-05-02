@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Unit tests for Board class.
  */
-public class BoardTest {
+class BoardTest {
     private Board board;
 
     @BeforeEach

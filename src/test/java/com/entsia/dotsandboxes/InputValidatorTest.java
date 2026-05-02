@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Unit tests for InputValidator class.
  */
-public class InputValidatorTest {
+class InputValidatorTest {
 
     @Test
     void testValidHorizontalEdges() {

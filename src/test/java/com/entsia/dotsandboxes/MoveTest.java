@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Unit tests for Move class.
  */
-public class MoveTest {
+class MoveTest {
 
     @Test
     void testValidMoveParsing() {

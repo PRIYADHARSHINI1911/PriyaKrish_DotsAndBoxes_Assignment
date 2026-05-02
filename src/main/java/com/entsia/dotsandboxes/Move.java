@@ -6,6 +6,13 @@ package com.entsia.dotsandboxes;
  * Input format: column (A-G) + row (0-6), e.g., "A1"
  */
 public class Move {
+    private static final char COLUMN_MIN = 'A';
+    private static final char COLUMN_MAX = 'G';
+    private static final char ROW_MIN = '0';
+    private static final char ROW_MAX = '6';
+    private static final int EXPECTED_LENGTH = 2;
+    private static final int HASH_MULTIPLIER = 31;
+    
     private final int column;  // 0-6 (A-G)
     private final int row;     // 0-6
 
@@ -27,7 +34,7 @@ public class Move {
      * Returns null if input is invalid.
      */
     public static Move parse(String input) {
-        if (input == null || input.length() != 2) {
+        if (input == null || input.length() != EXPECTED_LENGTH) {
             return null;
         }
 
@@ -36,12 +43,12 @@ public class Move {
         char rowChar = normalized.charAt(1);
 
         // Validate column (A-G)
-        if (columnChar < 'A' || columnChar > 'G') {
+        if (columnChar < COLUMN_MIN || columnChar > COLUMN_MAX) {
             return null;
         }
 
         // Validate row (0-6)
-        if (rowChar < '0' || rowChar > '6') {
+        if (rowChar < ROW_MIN || rowChar > ROW_MAX) {
             return null;
         }
 
@@ -67,6 +74,6 @@ public class Move {
 
     @Override
     public int hashCode() {
-        return 31 * column + row;
+        return HASH_MULTIPLIER * column + row;
     }
 }

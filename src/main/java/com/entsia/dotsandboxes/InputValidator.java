@@ -5,6 +5,12 @@ package com.entsia.dotsandboxes;
  */
 public class InputValidator {
 
+    private static final int MAX_INDEX = 6;
+
+    private InputValidator() {
+        /* This utility class should not be instantiated */
+    }
+
     /**
      * Check if a move is a valid edge position on the board.
      * Valid positions are between dots:
@@ -13,7 +19,7 @@ public class InputValidator {
      */
     public static boolean isValidEdgePosition(int column, int row) {
         // Must be within board bounds
-        if (column < 0 || column > 6 || row < 0 || row > 6) {
+        if (column < 0 || column > MAX_INDEX || row < 0 || row > MAX_INDEX) {
             return false;
         }
 

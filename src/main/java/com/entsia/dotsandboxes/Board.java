@@ -10,6 +10,15 @@ package com.entsia.dotsandboxes;
  */
 public class Board {
     private static final int SIZE = 7;
+    private static final int TOTAL_BOXES = 9;
+    private static final char DOT = '*';
+    private static final char EMPTY = ' ';
+    private static final char HORIZONTAL_LINE = '-';
+    private static final char VERTICAL_LINE = '|';
+    private static final char COLUMN_HEADER_START = 'A';
+    private static final int STEP_SIZE = 2;
+    private static final String COLUMN_SPACING = "  ";
+    private static final String SPACE = " ";
     private final char[][] grid;
 
     public Board() {
@@ -24,9 +33,9 @@ public class Board {
         for (int row = 0; row < SIZE; row++) {
             for (int col = 0; col < SIZE; col++) {
                 if (row % 2 == 0 && col % 2 == 0) {
-                    grid[row][col] = '*';  // Dots
+                    grid[row][col] = DOT;  // Dots
                 } else {
-                    grid[row][col] = ' ';  // Empty spaces for lines and boxes
+                    grid[row][col] = EMPTY;  // Empty spaces for lines and boxes
                 }
             }
         }
@@ -41,14 +50,14 @@ public class Board {
             return false;
         }
 
-        if (grid[row][column] != ' ') {
+        if (grid[row][column] != EMPTY) {
             return false;  // Already occupied
         }
 
         if (InputValidator.isHorizontalEdge(column, row)) {
-            grid[row][column] = '-';
+            grid[row][column] = HORIZONTAL_LINE;
         } else if (InputValidator.isVerticalEdge(column, row)) {
-            grid[row][column] = '|';
+            grid[row][column] = VERTICAL_LINE;
         } else {
             return false;
         }
@@ -63,7 +72,7 @@ public class Board {
         if (!isValidPosition(column, row)) {
             return false;
         }
-        return grid[row][column] != ' ';
+        return grid[row][column] != EMPTY;
     }
 
     /**
@@ -80,7 +89,7 @@ public class Board {
         if (row >= 0 && row < SIZE && column >= 0 && column < SIZE) {
             return grid[row][column];
         }
-        return ' ';
+        return EMPTY;
     }
 
     /**
@@ -105,6 +114,10 @@ public class Board {
         return 0;  // Empty box
     }
 
+    public static int getTotalBoxes() {
+        return TOTAL_BOXES;
+    }
+
     /**
      * Render the board as a string.
      */
@@ -112,22 +125,22 @@ public class Board {
         StringBuilder sb = new StringBuilder();
 
         // Column headers with spacing
-        sb.append("  ");  // Space for row numbers on the left
+        sb.append(COLUMN_SPACING);  // Space for row numbers on the left
         for (int col = 0; col < SIZE; col++) {
-            sb.append((char) ('A' + col));
+            sb.append((char) (COLUMN_HEADER_START + col));
             if (col < SIZE - 1) {
-                sb.append(" ");  // Space between columns
+                sb.append(SPACE);  // Space between columns
             }
         }
         sb.append("\n");
 
         // Rows with proper spacing and row numbers on the left
         for (int row = 0; row < SIZE; row++) {
-            sb.append(row).append(" ");  // Row number on the left
+            sb.append(row).append(SPACE);  // Row number on the left
             for (int col = 0; col < SIZE; col++) {
                 sb.append(grid[row][col]);
                 if (col < SIZE - 1) {
-                    sb.append(" ");  // Space between columns
+                    sb.append(SPACE);  // Space between columns
                 }
             }
             sb.append("\n");
@@ -142,20 +155,13 @@ public class Board {
     public boolean isFull() {
         // Total boxes = 3x3 = 9
         int filledBoxes = 0;
-        for (int row = 1; row < SIZE; row += 2) {
-            for (int col = 1; col < SIZE; col += 2) {
+        for (int row = 1; row < SIZE; row += STEP_SIZE) {
+            for (int col = 1; col < SIZE; col += STEP_SIZE) {
                 if (getBoxOwner(col, row) != 0) {
                     filledBoxes++;
                 }
             }
         }
-        return filledBoxes == 9;
-    }
-
-    /**
-     * Get total boxes on board (3x3 grid).
-     */
-    public static int getTotalBoxes() {
-        return 9;
+        return filledBoxes == TOTAL_BOXES;
     }
 }

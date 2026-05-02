@@ -7,17 +7,18 @@ import java.util.Scanner;
  * Handles user interaction and game loop.
  */
 public class DotsAndBoxes {
-    private static final Scanner scanner = new Scanner(System.in);
     private static final Game game = new Game();
 
     public static void main(String[] args) {
-        gameLoop();
+        try (Scanner scanner = new Scanner(System.in)) {
+            gameLoop(scanner);
+        }
     }
 
     /**
      * Main game loop.
      */
-    private static void gameLoop() {
+    private static void gameLoop(Scanner scanner) {
         System.out.println(game.getStatus());
 
         while (!game.isGameOver()) {
@@ -25,7 +26,7 @@ public class DotsAndBoxes {
             String prompt = String.format("Player %d, input a move <column><row> (or 'Q' to quit): ",
                     currentPlayer.getId());
 
-            String input = getPlayerInput(prompt);
+            String input = getPlayerInput(scanner, prompt);
 
             if (input.equalsIgnoreCase("Q")) {
                 System.out.println("Thanks for playing! Goodbye!");
@@ -34,26 +35,12 @@ public class DotsAndBoxes {
 
             Move move = Move.parse(input);
 
-            if (move == null) {
+            if (isValidMove(move)) {
+                game.makeMove(move);
+                System.out.println(game.getStatus());
+            } else {
                 System.out.println("Invalid move. Please try again.");
-                continue;
             }
-
-            // Check if position is valid
-            if (!InputValidator.isValidEdgePosition(move.getColumn(), move.getRow())) {
-                System.out.println("Invalid move. Please try again.");
-                continue;
-            }
-
-            // Check if already occupied
-            if (game.getBoard().isOccupied(move.getColumn(), move.getRow())) {
-                System.out.println("This position is already occupied. Please try again.");
-                continue;
-            }
-
-            // Make the move
-            game.makeMove(move);
-            System.out.println(game.getStatus());
         }
 
         // Game is over
@@ -70,8 +57,23 @@ public class DotsAndBoxes {
     /**
      * Get player input from console.
      */
-    private static String getPlayerInput(String prompt) {
+    private static String getPlayerInput(Scanner scanner, String prompt) {
         System.out.print(prompt);
         return scanner.nextLine().trim();
+    }
+
+    /**
+     * Validate if move is legal.
+     */
+    private static boolean isValidMove(Move move) {
+        if (move == null) {
+            return false;
+        }
+
+        if (!InputValidator.isValidEdgePosition(move.getColumn(), move.getRow())) {
+            return false;
+        }
+
+        return !game.getBoard().isOccupied(move.getColumn(), move.getRow());
     }
 }

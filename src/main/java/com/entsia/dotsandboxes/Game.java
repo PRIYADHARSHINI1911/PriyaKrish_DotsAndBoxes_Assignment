@@ -5,6 +5,13 @@ package com.entsia.dotsandboxes;
  * Manages game state, turn order, moves, and box detection.
  */
 public class Game {
+    private static final int BOARD_MIN_BOX_ROW = 1;
+    private static final int BOARD_MAX_BOX_ROW = 5;
+    private static final int BOARD_MIN_BOX_COL = 1;
+    private static final int BOARD_MAX_BOX_COL = 5;
+    private static final char HORIZONTAL_LINE = '-';
+    private static final char VERTICAL_LINE = '|';
+    
     private final Board board;
     private final Player player1;
     private final Player player2;
@@ -89,38 +96,30 @@ public class Game {
         if (InputValidator.isHorizontalEdge(column, row)) {
             // Horizontal line at (column, row)
             // Check box above at (column, row-1) if row >= 1
-            if (row >= 1) {
-                if (isBoxComplete(column, row - 1)) {
-                    board.setBox(column, row - 1, player.getId());
-                    player.incrementScore();
-                    boxesCompleted++;
-                }
+            if (row >= BOARD_MIN_BOX_ROW && isBoxComplete(column, row - 1)) {
+                board.setBox(column, row - 1, player.getId());
+                player.incrementScore();
+                boxesCompleted++;
             }
             // Check box below at (column, row+1) if row <= 5
-            if (row <= 5) {
-                if (isBoxComplete(column, row + 1)) {
-                    board.setBox(column, row + 1, player.getId());
-                    player.incrementScore();
-                    boxesCompleted++;
-                }
+            if (row <= BOARD_MAX_BOX_ROW && isBoxComplete(column, row + 1)) {
+                board.setBox(column, row + 1, player.getId());
+                player.incrementScore();
+                boxesCompleted++;
             }
         } else if (InputValidator.isVerticalEdge(column, row)) {
             // Vertical line at (column, row)
             // Check box to the left at (column-1, row) if column >= 1
-            if (column >= 1) {
-                if (isBoxComplete(column - 1, row)) {
-                    board.setBox(column - 1, row, player.getId());
-                    player.incrementScore();
-                    boxesCompleted++;
-                }
+            if (column >= BOARD_MIN_BOX_COL && isBoxComplete(column - 1, row)) {
+                board.setBox(column - 1, row, player.getId());
+                player.incrementScore();
+                boxesCompleted++;
             }
             // Check box to the right at (column+1, row) if column <= 5
-            if (column <= 5) {
-                if (isBoxComplete(column + 1, row)) {
-                    board.setBox(column + 1, row, player.getId());
-                    player.incrementScore();
-                    boxesCompleted++;
-                }
+            if (column <= BOARD_MAX_BOX_COL && isBoxComplete(column + 1, row)) {
+                board.setBox(column + 1, row, player.getId());
+                player.incrementScore();
+                boxesCompleted++;
             }
         }
 
@@ -140,13 +139,13 @@ public class Game {
 
         // Box must have all 4 sides
         // Top: horizontal at (column, row-1)
-        boolean hasTop = board.getCharAt(column, row - 1) == '-';
+        boolean hasTop = board.getCharAt(column, row - 1) == HORIZONTAL_LINE;
         // Bottom: horizontal at (column, row+1)
-        boolean hasBottom = board.getCharAt(column, row + 1) == '-';
+        boolean hasBottom = board.getCharAt(column, row + 1) == HORIZONTAL_LINE;
         // Left: vertical at (column-1, row)
-        boolean hasLeft = board.getCharAt(column - 1, row) == '|';
+        boolean hasLeft = board.getCharAt(column - 1, row) == VERTICAL_LINE;
         // Right: vertical at (column+1, row)
-        boolean hasRight = board.getCharAt(column + 1, row) == '|';
+        boolean hasRight = board.getCharAt(column + 1, row) == VERTICAL_LINE;
 
         return hasTop && hasBottom && hasLeft && hasRight;
     }

@@ -129,7 +129,7 @@ class GameIntegrationTest {
         game.getPlayer2().addScore(1);
         
         // Manually end game
-        assertTrue(game.getBoard().isFull() == false);  // Game not actually full yet
+        assertFalse(game.getBoard().isFull());  // Game not actually full yet
     }
 
     @Test
@@ -164,7 +164,7 @@ class GameIntegrationTest {
         assertTrue(game.makeMove(Move.parse("C1")));  // Right - completes box
         
         assertEquals(1, game.getPlayer2().getScore());
-        assertTrue(game.getBoard().getBoxOwner(1, 1) == 2);
+        assertEquals(2, game.getBoard().getBoxOwner(1, 1));
     }
 
     @Test

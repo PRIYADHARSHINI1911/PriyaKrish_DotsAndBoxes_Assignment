@@ -111,13 +111,16 @@ public class Board {
     public String render() {
         StringBuilder sb = new StringBuilder();
 
-        // Column headers
+        // Column headers with spacing
         sb.append("ABCDEFG\n");
 
-        // Rows
+        // Rows with proper spacing
         for (int row = 0; row < SIZE; row++) {
             for (int col = 0; col < SIZE; col++) {
                 sb.append(grid[row][col]);
+                if (col < SIZE - 1) {
+                    sb.append(" ");  // Space between columns
+                }
             }
             sb.append(" ").append(row).append("\n");
         }

@@ -87,37 +87,37 @@ public class Game {
         int boxesCompleted = 0;
 
         if (InputValidator.isHorizontalEdge(column, row)) {
-            // Check boxes above and below horizontal line
-            // Box above: (column-1, row-2) if row >= 2
-            if (row >= 2) {
-                if (isBoxComplete(column - 1, row - 2)) {
-                    board.setBox(column - 1, row - 2, player.getId());
+            // Horizontal line at (column, row)
+            // Check box above at (column, row-1) if row >= 1
+            if (row >= 1) {
+                if (isBoxComplete(column, row - 1)) {
+                    board.setBox(column, row - 1, player.getId());
                     player.incrementScore();
                     boxesCompleted++;
                 }
             }
-            // Box below: (column-1, row) if row <= 4
-            if (row <= 4) {
+            // Check box below at (column, row+1) if row <= 5
+            if (row <= 5) {
+                if (isBoxComplete(column, row + 1)) {
+                    board.setBox(column, row + 1, player.getId());
+                    player.incrementScore();
+                    boxesCompleted++;
+                }
+            }
+        } else if (InputValidator.isVerticalEdge(column, row)) {
+            // Vertical line at (column, row)
+            // Check box to the left at (column-1, row) if column >= 1
+            if (column >= 1) {
                 if (isBoxComplete(column - 1, row)) {
                     board.setBox(column - 1, row, player.getId());
                     player.incrementScore();
                     boxesCompleted++;
                 }
             }
-        } else if (InputValidator.isVerticalEdge(column, row)) {
-            // Check boxes left and right of vertical line
-            // Box left: (column-2, row-1) if column >= 2
-            if (column >= 2) {
-                if (isBoxComplete(column - 2, row - 1)) {
-                    board.setBox(column - 2, row - 1, player.getId());
-                    player.incrementScore();
-                    boxesCompleted++;
-                }
-            }
-            // Box right: (column, row-1) if column <= 4
-            if (column <= 4) {
-                if (isBoxComplete(column, row - 1)) {
-                    board.setBox(column, row - 1, player.getId());
+            // Check box to the right at (column+1, row) if column <= 5
+            if (column <= 5) {
+                if (isBoxComplete(column + 1, row)) {
+                    board.setBox(column + 1, row, player.getId());
                     player.incrementScore();
                     boxesCompleted++;
                 }
@@ -139,10 +139,10 @@ public class Game {
         }
 
         // Box must have all 4 sides
-        // Top: horizontal at (column+1, row-1)
-        boolean hasTop = board.getCharAt(column + 1, row - 1) == '-';
-        // Bottom: horizontal at (column+1, row+1)
-        boolean hasBottom = board.getCharAt(column + 1, row + 1) == '-';
+        // Top: horizontal at (column, row-1)
+        boolean hasTop = board.getCharAt(column, row - 1) == '-';
+        // Bottom: horizontal at (column, row+1)
+        boolean hasBottom = board.getCharAt(column, row + 1) == '-';
         // Left: vertical at (column-1, row)
         boolean hasLeft = board.getCharAt(column - 1, row) == '|';
         // Right: vertical at (column+1, row)

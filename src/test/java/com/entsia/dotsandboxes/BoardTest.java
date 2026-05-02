@@ -88,8 +88,10 @@ public class BoardTest {
     void testBoardRender() {
         String rendered = board.render();
         assertNotNull(rendered);
-        assertTrue(rendered.contains("ABCDEFG"), "Should contain column headers");
+        assertTrue(rendered.contains("A"), "Should contain column header A");
+        assertTrue(rendered.contains("G"), "Should contain column header G");
         assertTrue(rendered.contains("*"), "Should contain dots");
+        assertTrue(rendered.contains("0"), "Should contain row number 0");
     }
 
     @Test

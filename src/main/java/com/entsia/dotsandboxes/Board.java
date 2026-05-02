@@ -112,17 +112,25 @@ public class Board {
         StringBuilder sb = new StringBuilder();
 
         // Column headers with spacing
-        sb.append("ABCDEFG\n");
+        sb.append("  ");  // Space for row numbers on the left
+        for (int col = 0; col < SIZE; col++) {
+            sb.append((char) ('A' + col));
+            if (col < SIZE - 1) {
+                sb.append(" ");  // Space between columns
+            }
+        }
+        sb.append("\n");
 
-        // Rows with proper spacing
+        // Rows with proper spacing and row numbers on the left
         for (int row = 0; row < SIZE; row++) {
+            sb.append(row).append(" ");  // Row number on the left
             for (int col = 0; col < SIZE; col++) {
                 sb.append(grid[row][col]);
                 if (col < SIZE - 1) {
                     sb.append(" ");  // Space between columns
                 }
             }
-            sb.append(" ").append(row).append("\n");
+            sb.append("\n");
         }
 
         return sb.toString();

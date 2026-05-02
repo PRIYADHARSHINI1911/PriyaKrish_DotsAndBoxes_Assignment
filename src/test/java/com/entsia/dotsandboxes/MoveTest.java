@@ -71,9 +71,11 @@ public class MoveTest {
 
     @Test
     void testMoveToString() {
-        Move move = new Move(0, 1);  // Using reflection-like access via parse
         Move parsed = Move.parse("A1");
         assertEquals("A1", parsed.toString());
+        
+        Move parsed2 = Move.parse("G6");
+        assertEquals("G6", parsed2.toString());
     }
 
     @Test

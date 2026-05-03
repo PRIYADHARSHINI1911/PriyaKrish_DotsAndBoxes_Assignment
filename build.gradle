@@ -31,8 +31,8 @@ test {
     // Display test results in build output
     testLogging {
         events "passed", "skipped", "failed"
-        exceptionFormat "full"
-        showStandardStreams false
+        exceptionFormat = "full"
+        showStandardStreams = false
     }
 }
 

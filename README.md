@@ -6,6 +6,11 @@ A clean, console-based implementation of the classic Dots and Boxes game in Java
 
 Dots and Boxes is a two-player strategy game played on a 4×4 grid of dots. Players take turns drawing lines between adjacent dots, and when a player completes the fourth side of a box, they score a point and play again. The player with the most boxes at the end wins.
 
+## Requirements
+
+- **Java 11 or later** 
+- Gradle (wrapper included in project)
+
 ## Quick Start
 
 ### Easiest: Quick-Start Batch File

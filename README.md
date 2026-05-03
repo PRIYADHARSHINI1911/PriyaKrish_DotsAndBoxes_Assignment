@@ -15,7 +15,7 @@ Double-click `run.bat` to build and start the game immediately.
 
 ---
 
-### 🔧 IDE (IntelliJ IDEA / STS / Eclipse)
+### IDE (IntelliJ IDEA / STS / Eclipse)
 1. Open the project in your IDE
 2. Navigate to `src/main/java/com/entsia/dotsandboxes/DotsAndBoxes.java`
 3. Click the **▶ Run** button 
@@ -71,7 +71,7 @@ Coverage report: `build/reports/jacoco/test/html/index.html`
 
 ### Complete Testing Documentation
 
-**📄 [Testing_Document.pdf](docs/Testing_Document.pdf)** - Full evidence with screenshots covering:
+**[Testing_Document.pdf](docs/Testing_Document.pdf)** - Full evidence with screenshots covering:
 -  Build Successful
 -  Run Successful
 -  Run.bat execution
@@ -340,6 +340,6 @@ All commits follow a logical progression:
 
 ---
 
-**Author**: Priya Krish  
+**Author**: Priyadharshini Krishnaswamy
 **Assignment**: Dots and Boxes (19/05/21 V1.1)  
 **Version**: 1.0

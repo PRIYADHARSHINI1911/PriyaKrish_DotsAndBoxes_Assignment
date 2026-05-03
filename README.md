@@ -67,6 +67,41 @@ Coverage report: `build/reports/jacoco/test/html/index.html`
 
 ---
 
+## Testing & Verification
+
+### Complete Testing Documentation
+
+**📄 [Testing_Document.pdf](docs/Testing_Document.pdf)** - Full evidence with screenshots covering:
+-  Build Successful
+-  Run Successful
+-  Run.bat execution
+-  Code Coverage metrics
+-  6 Complete Testing Scenarios with screenshots:
+  1. Normal Game Flow (Happy Path)
+  2. Box Completion & Scoring
+  3. Invalid Move Rejection
+  4. Position already Occupied
+  5. Winner Declaration
+  6. Quit Game
+
+### Test Coverage
+
+- **60 Total Tests**: All passing
+  - 15 Board tests
+  - 13 Game logic tests
+  - 10 Move parsing tests
+  - 8 Input validation tests
+  - 14+ Integration tests
+
+- **Code Coverage**: 84% instruction, 79% branch
+  - Board.java: 99%
+  - Game.java: 92%
+  - Move.java: 96%
+  - Player.java: 100%
+  - InputValidator.java: 100%
+
+---
+
 ### How to Play
 Enter moves like `A1`, `B2`, etc., or `Q` to quit.
 
@@ -193,10 +228,15 @@ The project includes comprehensive JUnit 5 tests covering:
 - Integration tests (complete game flows, edge cases)
 
 **Test Statistics**:
-- **60 tests total**: 38 unit tests + 19 integration tests + 3 utility tests
-- **All tests passing** ✅
-- **Code Coverage**: 84% instruction coverage, 79% branch coverage
+- **60 tests total**: All passing 
+  - 15 Board tests
+  - 13 Game tests
+  - 10 Move tests
+  - 8 InputValidator tests
+  - 14+ Integration tests
+- **Code Coverage**: 84% instruction, 79% branch
 - **Coverage Report**: `build/reports/jacoco/test/html/index.html`
+
 
 Run tests with:
 ```bash

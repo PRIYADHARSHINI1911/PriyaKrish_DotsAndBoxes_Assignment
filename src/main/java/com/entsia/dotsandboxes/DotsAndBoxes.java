@@ -35,11 +35,13 @@ public class DotsAndBoxes {
 
             Move move = Move.parse(input);
 
-            if (isValidMove(move)) {
+            if (move == null || !InputValidator.isValidEdgePosition(move.getColumn(), move.getRow())) {
+                System.out.println("Invalid move. Please try again.");
+            } else if (game.getBoard().isOccupied(move.getColumn(), move.getRow())) {
+                System.out.println("This position is already occupied. Please try again.");
+            } else {
                 game.makeMove(move);
                 System.out.println(game.getStatus());
-            } else {
-                System.out.println("Invalid move. Please try again.");
             }
         }
 
@@ -60,20 +62,5 @@ public class DotsAndBoxes {
     private static String getPlayerInput(Scanner scanner, String prompt) {
         System.out.print(prompt);
         return scanner.nextLine().trim();
-    }
-
-    /**
-     * Validate if move is legal.
-     */
-    private static boolean isValidMove(Move move) {
-        if (move == null) {
-            return false;
-        }
-
-        if (!InputValidator.isValidEdgePosition(move.getColumn(), move.getRow())) {
-            return false;
-        }
-
-        return !game.getBoard().isOccupied(move.getColumn(), move.getRow());
     }
 }

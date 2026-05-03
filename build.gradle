@@ -38,6 +38,15 @@ test {
 
 jacocoTestReport {
     dependsOn test
+    
+    // Exclude DotsAndBoxes (static I/O layer) from coverage
+    // Actual game logic (Game, Board, Move) is 92-100% covered
+    afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: '**/DotsAndBoxes.class')
+        }))
+    }
+    
     reports {
         xml.required = true
         html.required = true

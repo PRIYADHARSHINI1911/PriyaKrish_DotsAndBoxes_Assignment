@@ -317,7 +317,7 @@ The codebase meets production quality standards:
 
 ## How to Play
 
-1. Run the game: `./gradlew run`
+1. Run the game using `run.bat`
 2. See the board and current scores
 3. Enter moves in format `<column><row>` (e.g., `A1`)
    - Columns: A–G (left to right)

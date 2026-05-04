@@ -180,9 +180,7 @@ public class Game {
     public String getStatus() {
         StringBuilder sb = new StringBuilder();
         sb.append(board.render());
-        sb.append("\nSCORE\n");
-        sb.append("Player 1: ").append(player1.getScore()).append("\n");
-        sb.append("Player 2: ").append(player2.getScore()).append("\n");
+        sb.append("\nSCORE Player 1: ").append(player1.getScore()).append(" Player 2: ").append(player2.getScore()).append("\n");
         return sb.toString();
     }
 }
